@@ -1,8 +1,32 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Navber from "../Navber/Navber";
+import { AuthContext } from "../Provider/AuthProvider";
+import { useContext } from "react";
+
 
 
 const Loing = () => {
+    const { signIn } = useContext(AuthContext);
+    const location = useLocation()
+    console.log(location)
+
+    const handleLogin = e => {
+        e.preventDefault()
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password)
+
+
+        //signIn
+        signIn(email, password)
+            .then(result => {
+                console.log(result.user)
+            })
+            .then(error => {
+                console.log(error)
+            })
+    }
+
     return (
         <div>
             <Navber></Navber>
@@ -13,7 +37,7 @@ const Loing = () => {
                     <h1 className="my-3 text-4xl font-bold">Login</h1>
                     <p className="text-sm  dark:text-gray-600">Login to access your account</p>
                 </div>
-                <form noValidate="" action="" className="space-y-12">
+                <form onSubmit={handleLogin} className="space-y-12">
                     <div className="space-y-4">
                         <div>
                             <label htmlFor="email" className="block mb-2 text-sm">Email address</label>
@@ -22,7 +46,7 @@ const Loing = () => {
                         <div>
                             <div className="flex justify-between mb-2">
                                 <label htmlFor="password" className="text-sm">Password</label>
-                                
+
                             </div>
                             <input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md border-gray-700 dark:border-gray-300  dark:bg-gray-50  dark:text-gray-800" />
                             <a rel="noopener noreferrer" href="#" className="text-xs hover:underline  dark:text-gray-600">Forgot password?</a>
@@ -30,10 +54,10 @@ const Loing = () => {
                     </div>
                     <div className="space-y-2">
                         <div>
-                            <button type="button" className="w-full px-8 py-3 font-semibold rounded-md bg-violet-400 dark:bg-violet-600 dark:text-gray-50">Login</button>
+                            <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-violet-400 dark:bg-violet-600 dark:text-gray-50">Login</button>
                         </div>
                         <p className="px-6 text-sm text-center  dark:text-gray-600">Don't have an account yet?
-                           <NavLink to={"/register"}> <strong className="text-red-500">Register</strong></NavLink>
+                            <NavLink to={"/register"}> <strong className="text-red-500">Register</strong></NavLink>
                         </p>
                     </div>
                 </form>

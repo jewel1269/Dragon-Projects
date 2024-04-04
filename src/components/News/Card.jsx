@@ -1,9 +1,10 @@
 import { IoEyeOutline } from "react-icons/io5";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { CiShare2 } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const Card = ({ item }) => {
-    const { title, name, image_url, img, details, total_view, rating } = item
+    const { title, name, image_url, img, details, total_view, rating,_id } = item
     return (
         <div>
             <div className="flex mt-10 flex-col max-w-lg p-6 space-y-6 overflow-hidden bg-slate-100 rounded-2xl shadow-md dark:bg-gray-50  dark:text-gray-800">
@@ -24,8 +25,8 @@ const Card = ({ item }) => {
                 <div>
                     <h2 className="mb-1 text-xl font-semibold">{title}</h2>
                     <img src={image_url} alt="" className="object-cover w-full mb-4 h-60 sm:h-96 bg-gray-500 dark:bg-gray-500" />
-                    <p className="text-sm  dark:text-gray-600">{details.split(' ').slice(0, 50).join(' ')}......</p>
-                    <strong className="text-red-400">Read More.....</strong>
+                    <p className="text-sm   dark:text-gray-600">{details.split(' ').slice(0, 50).join(' ')}   <strong><Link to={`/card/${_id}`} className="text-purple-500 font-Poppins">Read More.....</Link></strong></p>
+                    
                 </div>
                 <div className="flex flex-wrap justify-between">
                     <div className="space-x-2 flex items-center">

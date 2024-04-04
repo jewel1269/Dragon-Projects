@@ -1,12 +1,33 @@
 import { NavLink } from "react-router-dom";
 import Navber from "../Navber/Navber";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
+    const { createUser } = useContext(AuthContext)
+
+    const handleRegi = e => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password)
+
+        //createUser
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user)
+            })
+            .then(error => {
+                console.log(error)
+            })
+    }
+
+
     return (
         <div>
             <Navber></Navber>
-            <section className="p-6 mt-10  font-Poppins">
-                <form noValidate="" action="" className="container flex bg-slate-100 flex-col mx-auto space-y-12">
+            <section className="p-6 mt-10 shadow-2xl  font-Poppins">
+                <form onSubmit={handleRegi} className="container flex bg-slate-100 flex-col mx-auto space-y-12">
                     <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm">
                         <div className="space-y-2 col-span-full lg:col-span-1">
                             <p className="font-medium">Personal Inormation</p>
@@ -14,17 +35,21 @@ const Register = () => {
                         </div>
                         <div className="grid grid-cols-6 gap-7 col-span-full lg:col-span-3">
                             <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="firstname" className="text-sm">First name</label>
-                                <input id="firstname" type="text" placeholder="First name" className="w-full rounded-md focus:ring focus:ring-opacity-75 p-2  focus:ring-violet-400 border-gray-700" />
+                                <label htmlFor="firstname" className="text-sm">Name</label>
+                                <input id="firstname" type="text" placeholder="Name" className="w-full rounded-md focus:ring focus:ring-opacity-75 p-2  focus:ring-violet-400 border-gray-700" />
                             </div>
-                            <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="lastname" className="text-sm">Last name</label>
-                                <input id="lastname" type="text" placeholder="Last name" className="w-full rounded-md focus:ring focus:ring-opacity-75 p-2  focus:ring-violet-400 border-gray-700" />
-                            </div>
+                            <br />
+
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="email" className="text-sm">Email</label>
-                                <input id="email" type="email" placeholder="Email" className="w-full rounded-md focus:ring focus:ring-opacity-75 p-2 focus:ring-violet-400 border-gray-700" />
+                                <input name="email" type="email" placeholder="Email" className="w-full rounded-md focus:ring focus:ring-opacity-75 p-2 focus:ring-violet-400 border-gray-700" />
+                            </div> <br />
+
+                            <div className="col-span-full sm:col-span-3">
+                                <label htmlFor="email" className="text-sm">Password</label>
+                                <input name="password" type="password" placeholder="password" className="w-full rounded-md focus:ring focus:ring-opacity-75 p-2 focus:ring-violet-400 border-gray-700" />
                             </div>
+
                             <div className="col-span-full">
                                 <label htmlFor="address" className="text-sm">Address</label>
                                 <input id="address" type="text" placeholder="" className="w-full rounded-md focus:ring focus:ring-opacity-75 p-2 focus:ring-violet-400 border-gray-700" />
