@@ -8,8 +8,8 @@ const Navber = () => {
 
     const handleSignOut = () => {
         logOut()
-        .then()
-        .catch()
+            .then()
+            .catch()
     }
 
     return (
@@ -28,11 +28,19 @@ const Navber = () => {
                     </li>
                 </ul>
                 <div className="items-center flex-shrink-0 hidden lg:flex">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src={userPhoto} />
+                    {
+                        user ? <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                            </div>
                         </div>
-                    </div>
+                            :
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src={userPhoto} />
+                                </div>
+                            </div>
+                    }
                     {
                         user ?
                             <button onClick={handleSignOut} className="btn bg-orange-300">Log Out</button>

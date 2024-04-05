@@ -8,28 +8,28 @@ import CardDetails from "../CardDetails/CardDetails";
 import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root></Root>,
-      children:[
-        {
-            path: "/",
-            element:<Home></Home>
-        },
-        {
-          path: '/card/:id',
-          element: <PrivateRoute><CardDetails></CardDetails></PrivateRoute>
-        },
-        {
-          path: "/login",
-          element:<Loing></Loing>
-        },
-        {
-          path: "/register",
-          element:<Register></Register>
-        }
-      ]
-    },
-  ]);
-  
-  export default router;
+  {
+    path: "/",
+    element: <Root></Root>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>
+      },
+      {
+        path: '/card/:id',
+        element: <PrivateRoute><CardDetails></CardDetails></PrivateRoute>
+      },
+      {
+        path: "/login",
+        element: <Loing></Loing>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
+      }
+    ]
+  },
+]);
+
+export default router;

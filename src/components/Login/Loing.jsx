@@ -2,10 +2,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import Navber from "../Navber/Navber";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useContext } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 
 const Loing = () => {
+    const navi = useNavigate()
     const { signIn } = useContext(AuthContext);
     const location = useLocation()
     console.log(location)
@@ -21,6 +22,8 @@ const Loing = () => {
         signIn(email, password)
             .then(result => {
                 console.log(result.user)
+                navi(location.state)
+
             })
             .then(error => {
                 console.log(error)
